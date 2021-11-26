@@ -1,14 +1,13 @@
 package com.example.clientesAPI.models.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.sun.istack.NotNull;
 import lombok.*;
 import org.hibernate.Hibernate;
 import org.hibernate.validator.constraints.br.CPF;
 
-
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -31,7 +30,7 @@ public class Cliente {
 
     @Column(nullable = false, length = 11)
     @CPF
-    @NotNull
+    @NotNull @NotEmpty
     private String cpf;
 
     @Column(updatable = false)
