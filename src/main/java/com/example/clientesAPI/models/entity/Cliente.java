@@ -1,10 +1,14 @@
 package com.example.clientesAPI.models.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.sun.istack.NotNull;
 import lombok.*;
 import org.hibernate.Hibernate;
+import org.hibernate.validator.constraints.br.CPF;
+
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -22,12 +26,15 @@ public class Cliente {
     private Integer id;
 
     @Column(nullable = false, length = 150)
+    @NotEmpty
     private String nome;
 
     @Column(nullable = false, length = 11)
+    @CPF
+    @NotNull
     private String cpf;
 
-    @Column
+    @Column(updatable = false)
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataCadastro;
 
