@@ -30,7 +30,7 @@ public class ClienteController {
     }
 
     @PutMapping("{id}")
-    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void update(@PathVariable Integer id, Cliente cliente) {
         repository.findById(id)
                 .map(c -> {
