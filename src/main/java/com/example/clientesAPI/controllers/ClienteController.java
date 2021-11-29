@@ -22,7 +22,7 @@ public class ClienteController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Cliente save(@Valid @RequestBody Cliente cliente) {
+    public Cliente save(@Valid Cliente cliente) {
         return repository.save(cliente);
     }
 
