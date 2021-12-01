@@ -4,6 +4,7 @@ import com.example.clientesAPI.models.entity.Cliente;
 import com.example.clientesAPI.models.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -11,6 +12,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping(path = "/api/clientes")
+@Validated
 public class ClienteController {
 
     private final ClienteRepository repository;
@@ -22,7 +24,7 @@ public class ClienteController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Cliente save(@Valid Cliente cliente) {
+    public Cliente save(@Valid  Cliente cliente) {
         return repository.save(cliente);
     }
 
@@ -49,8 +51,8 @@ public class ClienteController {
                 .map(cliente -> {
                     repository.delete(cliente);
                     return Void.TYPE;
-                })
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não Encontrado"));
+                });
+//                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não Encontrado"));
     }
 
 }
